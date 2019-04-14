@@ -26,6 +26,5 @@ public class Counter {
 //            utility.printStatistic(allDotJSFiles);
             filer.setStartFolder(guide.paveContinue());
         }
-
     }
 }
