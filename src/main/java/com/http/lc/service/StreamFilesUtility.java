@@ -9,9 +9,9 @@ import java.nio.file.Paths;
 import java.util.*;
 
 
-public class FilesUtility implements FilesUtilityInterface {
+public class StreamFilesUtility implements FilesUtilityInterface {
 
-    public ArrayList<File> clearSameFiles(ArrayList<File> fileList) {
+    public static ArrayList<File> clearSameFiles(ArrayList<File> fileList) {
         ArrayList<File> nonRepeatingList = new ArrayList<>();
         int b = 1;
         boolean isRepeat;
@@ -34,7 +34,7 @@ public class FilesUtility implements FilesUtilityInterface {
     }
 
 
-    public ArrayList<String> convertToStringList(ArrayList<File> files) {
+    public static ArrayList<String> convertToStringList(ArrayList<File> files) {
         ArrayList<String> filesNames = new ArrayList<>();
         for (File file : files) {
             filesNames.add(FilesUtilityInterface.readFileName(file));
@@ -42,7 +42,7 @@ public class FilesUtility implements FilesUtilityInterface {
         return filesNames;
     }
 
-    public int countUpLines(ArrayList<File> files, String... unreadLines) throws IOException {
+    public static int countUpLines(ArrayList<File> files, String... unreadLines) throws IOException {
         int linesCount = 0;
 
         for (File file : files) {
@@ -80,13 +80,13 @@ public class FilesUtility implements FilesUtilityInterface {
         System.out.println("All characters count: " + allCharsCount);
     }
 
-    private int countUpLinesAtFile(File file, String... unreadableLines) throws IOException {
+    private static int countUpLinesAtFile(File file, String... unreadableLines) throws IOException {
         return (int) Files.lines(Paths.get(file.getCanonicalPath()))
                 .filter(n -> isReadableLine(n, unreadableLines))
                 .count();
     }
 
-    private long countUpCharsAtFile(File file, String... unreadableLines) throws IOException {
+    private static long countUpCharsAtFile(File file, String... unreadableLines) throws IOException {
         return Files.lines(Paths.get(file.getCanonicalPath()))
                 .filter(n -> isReadableLine(n, unreadableLines))
                 .flatMapToInt(line ->
@@ -94,7 +94,7 @@ public class FilesUtility implements FilesUtilityInterface {
                 .count();
     }
 
-    private boolean isReadableLine(String line, String... unreadLines) {
+    private static boolean isReadableLine(String line, String... unreadLines) {
         if (line.isEmpty()) {
             return false;
         }

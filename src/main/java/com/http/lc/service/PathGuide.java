@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class PathGuide implements PaveInterface{
+public class PathGuide implements PaveInterface {
     @Getter
     private String path = "";
     private File direction = null;
@@ -109,7 +109,6 @@ public class PathGuide implements PaveInterface{
                     return;
                 }
             }
-            System.out.println("Wrong disc name");
         } while (true);
     }
 }

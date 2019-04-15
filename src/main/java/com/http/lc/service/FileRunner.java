@@ -43,13 +43,13 @@ public class FileRunner {
     }
 
     public ArrayList<File> findSpecificFiles(String extension) {
-        return (ArrayList<File>) allFiles.stream().filter(file -> {
+        return (ArrayList<File>) allFiles.parallelStream().filter(file -> {
             try {
                 String fileExtension = file.toString().substring(file.toString().lastIndexOf("."));
                 return fileExtension.equals("." + extension);
-            } catch (IndexOutOfBoundsException e){
-                return false;
+            } catch (IndexOutOfBoundsException ignored){
             }
+            return false;
         }).collect(Collectors.toList());
     }
 }

@@ -1,7 +1,7 @@
 package com.http.lc.entity;
 
 import com.http.lc.service.FileRunner;
-import com.http.lc.service.FilesUtility;
+import com.http.lc.service.StreamFilesUtility;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -11,14 +11,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-class FilesUtilityTest {
-    private static FilesUtility filesUtility;
+class StreamFilesUtilityTest {
+    private static StreamFilesUtility streamFilesUtility;
     private static FileRunner runnerProjects;
     private static FileRunner runnerWebLib;
 
     @BeforeAll
     private static void setUp() {
-        filesUtility = new FilesUtility();
+        streamFilesUtility = new StreamFilesUtility();
         runnerProjects = new FileRunner("C:\\Projects");
         runnerWebLib = new FileRunner("C:\\Projects\\weblib");
     }
@@ -26,8 +26,8 @@ class FilesUtilityTest {
     @Test
     void printStatistic() {
         runnerProjects.allFilesInit();
-        ArrayList<File> files = filesUtility.clearSameFiles(runnerProjects.findSpecificFiles("java"));
-        filesUtility.printStatistic(files, "import", "package");
+        ArrayList<File> files = StreamFilesUtility.clearSameFiles(runnerProjects.findSpecificFiles("java"));
+        streamFilesUtility.printStatistic(files, "import", "package");
     }
 
     @Test
